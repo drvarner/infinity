@@ -1,0 +1,34 @@
+{% extends "_layout.html" %}
+{% block head %}
+    {% if faction %}
+    <script src="https://army.infinitythegame.com/import/json_dataUnidades_{{ faction.army_id }}_ENG.js"></script>
+    {% endif %}
+{% endblock %}
+{% block body %}
+    {% if faction %}
+    <h1>{{ faction.name }}</h1>
+    <ul id="unitList">
+    </ul>
+    {% endif %}
+
+    <script>
+        $(function() {
+            if (JSON_UNIDADES) {
+                var units = JSON.parse(JSON_UNIDADES)
+                var unitList = $('#unitList');
+                console.log(units);
+                for (var i = 0; i < units.length; i++)
+                {
+                    var options = units[i].perfiles[0].opciones;
+                    unitList.append('<li id=' + units[i].id + '>' + units[i].nombre + '</li>');
+                    $('#' + units[i].id).append('<ul class="options">');
+                    for ( var j = 0; j < options.length; j++)
+                    {
+                        $('#' + units[i].id + ' ul').append('<li>' + options[j].nombre + ' ' + options[j].CD + '</li>');
+                    }
+                }
+            }
+        });
+
+    </script>
+{% endblock %}

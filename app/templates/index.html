@@ -1,0 +1,18 @@
+{% extends "_layout.html" %}
+{% block head %}
+{% endblock %}
+{% block body %}
+{% if factions %}
+    <ul>
+        {% for faction in factions %}
+        <li>
+            <a href="{{ url_for('faction', army_id=faction.army_id) }}">
+                {{ faction.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h2>Whoopsie!</h2>
+{% endif %}
+{% endblock %}

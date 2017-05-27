@@ -1,0 +1,14 @@
+{% extends "_layout.html" %}
+{% block body %}
+{% if armyList %}
+    <h2>{{ faction.name }}</h2>
+    <h1>{{ armyList["Title"] }} - {{ armyList["Points"] }}</h1>
+    {% for unit in armyList["Units"] %}
+    <ul>
+        {% for entry in unit %}
+        <li>{{ entry }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+{% endif %}
+{% endblock %}
